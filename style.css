@@ -1,161 +1,125 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #48C3EB, #718EDD);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #333;
-  }
-  
-
-  .container {
-    display: flex;
-    width: 90%;
-    max-width: 1200px;
-    height: 80vh;
-    background-color: white;
-    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .container:hover {
-    transform: scale(1.02);
-  }
-  
-
-  .left-section {
-    flex: 1;
-    padding: 50px 40px;
-    background: linear-gradient(135deg, #14274e, #394867);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .left-section h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-  }
-  
-  .left-section p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    max-width: 80%;
-    margin: 0 auto;
-  }
-  
-  .razor {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .razorpay {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-  }
-  
-
-  .right-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: #f9f9f9;
-    border-left: 5px solid #48C3EB;
-    padding: 30px;
-  }
-  
-  .chatbox {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    overflow: hidden;
-  }
-  
-  .messages {
-    flex: 1;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    overflow-y: auto;
-  }
-  
-  .input-area {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
-  }
-  
-  input[type="text"] {
-    flex: 1;
-    padding: 15px 25px;
-    border-radius: 30px;
-    border: 2px solid #ccc;
-    font-size: 1rem;
-    outline: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  }
-  
-  input[type="text"]:focus {
-    border-color: #48C3EB;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-
-  .mic-btn {
-    margin-left: 20px;
-    padding: 16px;
-    background-color: #ef233c;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-  
-  .mic-btn:hover {
-    background-color: #d90429;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transform: scale(1.1);
-  }
-  
-
-  input[type="text"]:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  
-  
-
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #48C3EB, #718EDD);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+}
+.container {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  height: 80vh;
+  background-color: white;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+.container:hover {
+  transform: scale(1.02);
+}
+.left-section {
+  flex: 1;
+  padding: 40px 30px; /* Reduced padding for better spacing */
+  background: linear-gradient(135deg, #14274e, #394867);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.left-section h1 {
+  font-size: 3rem; /* Adjusted font size */
+  font-weight: 600; /* Changed weight for better balance */
+  margin-bottom: 15px; /* Reduced margin */
+  letter-spacing: 1px; /* Reduced letter spacing */
+}
+.left-section p {
+  font-size: 1rem; /* Reduced font size for better alignment */
+  line-height: 1.5; /* Adjusted line height */
+  max-width: 80%;
+  margin: 0 auto 20px; /* Added bottom margin for spacing */
+}
+.razor {
+  margin-top: 20px; /* Reduced margin */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.razorpay {
+  width: 80px; /* Adjusted logo size */
+  height: 80px;
+  margin-bottom: 10px;
+}
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  border-left: 5px solid #48C3EB;
+  padding: 20px; /* Reduced padding for more space */
+}
+.chatbox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+}
+.messages {
+  flex: 1;
+  padding: 10px; /* Reduced padding */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  margin-bottom: 15px; /* Added margin for spacing */
+}
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+input[type="text"] {
+  flex: 1;
+  padding: 10px 15px; /* Adjusted padding */
+  border-radius: 30px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-right: 10px; /* Added right margin */
+}
+input[type="text"]:focus {
+  border-color: #48C3EB;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.bubble {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 10px; /* Spacing between messages */
+  max-width: 80%;
+}
+.user .bubble {
+  background-color: #d1f7c4; /* Light green for user messages */
+  align-self: flex-end; /* Align user messages to the right */
+}
+.bot .bubble {
+  background-color: #f1f1f1; /* Light gray for bot messages */
+  align-self: flex-start; /* Align bot messages to the left */
+}
