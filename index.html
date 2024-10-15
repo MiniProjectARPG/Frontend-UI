@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversational Payments</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversational Website</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="header">Conversational Payments</div>
-        <div class="messages" id="messages"></div>
-        <div class="input-container">
-            <input type="text" id="userInput" placeholder="Enter your command">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+  <div class="container">
+    <div class="left-section">
+      <h1>Conversational Payments</h1>
+      <p>Welcome to my conversational website where you can interact with me using our voice chat feature. Just type or use the microphone to speak. </p>
+      <p>We use Razorpay as our payment gateway
+      </p>
+      <div class="razor">
+        <img src="razorpay.png" alt="Razorpay" class="razorpay">
+        <p>Powered by</p>
     </div>
-    <script src="script.js"></script>
+      
+    </div>
+
+    <div class="right-section">
+      <div class="chatbox">
+        <div class="messages" id="messages"></div>
+        <div class="input-area">
+          <input type="text" id="chatInput" placeholder="Hold the button to speak...">
+          <button class="mic-btn">
+            <i class="fas fa-microphone"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
 </body>
 </html>

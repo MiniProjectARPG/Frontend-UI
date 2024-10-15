@@ -1,104 +1,161 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f7fa;
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #48C3EB, #718EDD);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+    color: #333;
+  }
+  
 
-.chat-container {
-    width: 400px;
-    height: 600px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  .container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    background-color: white;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .container:hover {
+    transform: scale(1.02);
+  }
+  
+
+  .left-section {
+    flex: 1;
+    padding: 50px 40px;
+    background: linear-gradient(135deg, #14274e, #394867);
+    color: white;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-}
-
-.header {
-    background-color: #4CAF50;
-    padding: 15px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    border-bottom: 3px solid #388e3c;
-}
+  }
+  
+  .left-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+  
+  .left-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  
+  .razor {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .razorpay {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
 
-.messages {
+  .right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    border-left: 5px solid #48C3EB;
+    padding: 30px;
+  }
+  
+  .chatbox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  .messages {
     flex: 1;
     padding: 20px;
-    overflow-y: scroll;
-    background-color: #f5f7fa;
-}
-
-.message {
-    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+  }
+  
+  .input-area {
     display: flex;
-}
-
-.message.user {
-    justify-content: flex-end;
-}
-
-.message.user .bubble {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.message.bot .bubble {
-    background-color: #e0e0e0;
-    color: #333333;
-}
-
-.bubble {
-    padding: 10px 15px;
-    border-radius: 20px;
-    max-width: 70%;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.input-container {
-    display: flex;
-    background-color: #ffffff;
-    padding: 15px;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 0;
     border-top: 1px solid #ddd;
-}
-
-.input-container input {
+  }
+  
+  input[type="text"] {
     flex: 1;
-    padding: 12px 15px;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    font-size: 16px;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 2px solid #ccc;
+    font-size: 1rem;
     outline: none;
-    transition: border-color 0.3s ease;
-}
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  input[type="text"]:focus {
+    border-color: #48C3EB;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
 
-.input-container input:focus {
-    border-color: #4CAF50;
-}
-
-.input-container button {
-    background-color: #4CAF50;
+  .mic-btn {
+    margin-left: 20px;
+    padding: 16px;
+    background-color: #ef233c;
     color: white;
     border: none;
     border-radius: 50%;
-    padding: 12px;
-    margin-left: 10px;
+    font-size: 1.5rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease;
-}
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .mic-btn:hover {
+    background-color: #d90429;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+  }
+  
 
-.input-container button:hover {
-    background-color: #388e3c;
-}
+  input[type="text"]:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  
+
+
