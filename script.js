@@ -21,13 +21,14 @@ recognition.onresult = function (event) {
     }
 };
 
+// Ensure recognition restarts if it unexpectedly stops
 recognition.onend = function() {
     if (!listeningForCommand) {
         recognition.start(); // Keep listening for "Hello UPI" if recognition is stopped unexpectedly
     }
 };
 
-// Start the recognition to listen for "Hello UPI"
+// Start listening for "Hello UPI"
 recognition.start();
 
 function startCommandRecognition() {
@@ -49,10 +50,16 @@ function startCommandRecognition() {
         commandRecognition.stop(); // Stop listening after handling one command
         listeningForCommand = false; // Reset command listening
         appendMessage('bot', "Command processed. Say 'Hello UPI' to activate voice command again.");
+        
+        // Restart recognition to listen for "Hello UPI" again
+        recognition.start(); // Restart listening for "Hello UPI"
     };
 
     commandRecognition.onend = function() {
         // We stop after processing a single command, no need to restart
+        if (!listeningForCommand) {
+            recognition.start(); // If no command is in progress, restart recognition for "Hello UPI"
+        }
     };
 
     commandRecognition.start(); // Start listening for a single command
