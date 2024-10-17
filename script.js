@@ -1,4 +1,4 @@
-
+// Initialize speech recognition
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 recognition.lang = 'en-US';
@@ -6,21 +6,24 @@ recognition.interimResults = false;
 recognition.continuous = true;
 
 let listeningForCommand = false;
-let commandInProgress = false; // Flag to prevent duplicate commands
+let commandInProgress = false; // Prevents duplicate commands
 
 // Start listening for "Hello UPI" trigger word
 recognition.onresult = function (event) {
     const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+    console.log(`Transcript: ${transcript}`); // Debugging log
+    
     if (transcript === "hello upi" && !listeningForCommand) {
         listeningForCommand = true;
         appendMessage('bot', "Voice command activated! You can now speak your command.");
         recognition.stop(); // Stop listening for "Hello UPI"
-        startCommandRecognition(); // Start listening for commands
-    } else if (transcript === "stop" && listeningForCommand) {
-        listeningForCommand = false;
-        appendMessage('bot', "Voice command deactivated.");
-        recognition.stop(); // Stop listening for commands
-        recognition.start(); // Restart listening for "Hello UPI"
+        startCommandRecognition(); // Start listening for a single command
+    }
+};
+
+recognition.onend = function() {
+    if (!listeningForCommand) {
+        recognition.start(); // Keep listening for "Hello UPI" if recognition is stopped unexpectedly
     }
 };
 
@@ -31,7 +34,8 @@ function startCommandRecognition() {
     const commandRecognition = new SpeechRecognition();
     commandRecognition.lang = 'en-US';
     commandRecognition.interimResults = false;
-
+    
+    // Handle the user's command once recognized
     commandRecognition.onresult = function (event) {
         if (commandInProgress) return; // Prevent duplicate handling
         commandInProgress = true; // Mark command processing in progress
@@ -39,17 +43,27 @@ function startCommandRecognition() {
         document.getElementById("chatInput").value = voiceCommand; // Display recognized command in input box
         appendMessage('user', voiceCommand); // Show user's message
         sendMessage(); // Automatically send the recognized command
-        commandInProgress = false; // Reset the flag
+        commandInProgress = false; // Reset the flag after processing
+        
+        // Stop listening for commands and reset state
+        commandRecognition.stop(); // Stop listening after handling one command
+        listeningForCommand = false; // Reset command listening
+        appendMessage('bot', "Command processed. Say 'Hello UPI' to activate voice command again.");
     };
 
-    commandRecognition.start(); // Start command recognition
+    commandRecognition.onend = function() {
+        // We stop after processing a single command, no need to restart
+    };
+
+    commandRecognition.start(); // Start listening for a single command
 }
 
 function sendMessage() {
     let userInput = document.getElementById("chatInput").value;
     if (userInput.trim()) {
+        appendMessage('user', userInput); // Display the user's message in the chat
         // Process the user command here (e.g., send it to the server)
-        document.getElementById("chatInput").value = ''; // Clear input
+        document.getElementById("chatInput").value = ''; // Clear the input box
     }
 }
 
@@ -57,7 +71,7 @@ function appendMessage(sender, message) {
     let messagesDiv = document.getElementById("messages");
     let messageElement = document.createElement('div');
     messageElement.classList.add('message', sender);
-    messageElement.innerHTML = <div class="bubble">${message}</div>;
+    messageElement.innerHTML = `<div class="bubble">${message}</div>`; // Corrected the innerHTML
     messagesDiv.appendChild(messageElement);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to bottom
+    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to the bottom
 }
