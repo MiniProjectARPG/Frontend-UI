@@ -4,18 +4,9 @@ function processUserCommand(command) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ command: command })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Server error: ${response.status}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        if (data.reply) {
-            appendMessage('bot', data.reply);
-        } else {
-            appendMessage('bot', 'No reply received from the server.');
-        }
+        appendMessage('bot', data.reply);
     })
     .catch(error => {
         appendMessage('bot', 'Error processing the command.');
