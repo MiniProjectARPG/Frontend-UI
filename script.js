@@ -13,9 +13,8 @@ recognition.onresult = function (event) {
     const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
     console.log(`Transcript: ${transcript}`); // Debugging log
     
-    if (transcript === "hello upi" && !listeningForCommand && !commandInProgress) {
+    if (transcript === "hello upi" && !listeningForCommand) {
         listeningForCommand = true;
-        commandInProgress = true; // Set this to prevent further processing until command is handled
         appendMessage('bot', "Voice command activated! You can now speak your command.");
         recognition.stop(); // Stop listening for "Hello UPI"
         startCommandRecognition(); // Start listening for a single command
@@ -24,7 +23,7 @@ recognition.onresult = function (event) {
 
 // Ensure recognition restarts if it unexpectedly stops
 recognition.onend = function() {
-    if (!listeningForCommand && !commandInProgress) {
+    if (!listeningForCommand) {
         recognition.start(); // Keep listening for "Hello UPI" if recognition is stopped unexpectedly
     }
 };
@@ -39,11 +38,13 @@ function startCommandRecognition() {
     
     // Handle the user's command once recognized
     commandRecognition.onresult = function (event) {
-        if (!commandInProgress) return; // Prevent duplicate handling
+        if (commandInProgress) return; // Prevent duplicate handling
+        commandInProgress = true; // Mark command processing in progress
         const voiceCommand = event.results[0][0].transcript;
         document.getElementById("chatInput").value = voiceCommand; // Display recognized command in input box
         appendMessage('user', voiceCommand); // Show user's message
         sendMessage(); // Automatically send the recognized command
+        commandInProgress = false; // Reset the flag after processing
         
         // Stop listening for commands and reset state
         commandRecognition.stop(); // Stop listening after handling one command
@@ -52,14 +53,11 @@ function startCommandRecognition() {
         
         // Restart recognition to listen for "Hello UPI" again
         recognition.start(); // Restart listening for "Hello UPI"
-        
-        // Allow commands to be processed again
-        commandInProgress = false;
     };
 
     commandRecognition.onend = function() {
         // We stop after processing a single command, no need to restart
-        if (!listeningForCommand && !commandInProgress) {
+        if (!listeningForCommand) {
             recognition.start(); // If no command is in progress, restart recognition for "Hello UPI"
         }
     };
