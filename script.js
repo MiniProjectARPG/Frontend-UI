@@ -44,7 +44,6 @@ function startCommandRecognition() {
         document.getElementById("chatInput").value = voiceCommand; // Display recognized command in input box
         appendMessage('user', voiceCommand); // Show user's message
         sendMessage(); // Automatically send the recognized command
-        commandInProgress = false; // Reset the flag after processing
         
         // Stop listening for commands and reset state
         commandRecognition.stop(); // Stop listening after handling one command
@@ -53,6 +52,8 @@ function startCommandRecognition() {
         
         // Restart recognition to listen for "Hello UPI" again
         recognition.start(); // Restart listening for "Hello UPI"
+        
+        commandInProgress = false; // Reset the flag after restarting recognition
     };
 
     commandRecognition.onend = function() {
